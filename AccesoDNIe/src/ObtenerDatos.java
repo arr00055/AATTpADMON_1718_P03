@@ -45,9 +45,9 @@ public class ObtenerDatos {
             CardChannel ch = c.getBasicChannel();
 
             if (esDNIe(atr)) {
-                datos = leerCertificado(ch); //Se lee el certificado. 
-                if(datos!=null)              //Si hay datos del certificado. 
-                    user = leerDatosUsuario(datos); //Metodo que devuelve el objeto usuario junto con sus datos que han sido leidos.
+                datos = leerCertificado(ch);  
+                if(datos!=null)              
+                    user = leerDatosUsuario(datos); 
             }
             c.disconnect(false);
 
@@ -275,8 +275,56 @@ public class ObtenerDatos {
      * @param datos
      * @return Objeto de clase Usuario con los datos asociados extraidos del DNIe.
      */
-    private void leerDatosUsuario(byte[] datos) {
+    private Usuario leerDatosUsuario(byte[] datos) {
         //Variables del metodo.
-
+        boolean bandera = false; //Flag para entrar y salir en los do while como se ve en metodos de esta clase. 
+        String nif = "";         //Inicializo la cadena que contendra el NIF.
+        String name = "";        //Inicializo la cadena que contendra el Nombre.
+        String apellidos = "";   //Inicializo la cadena que contendra los Apellidos.
+        
+        do {
+            /**
+             * Recorrer el array de bytes datos en toda su longitud hasta dar 
+             * con la posición dentro del OID que me interesa y que cumple la 
+             * condición del if -> OID 85 4 5. Es necesario ajustar la longitud
+             * del array de bytes datos para que los valores no sean repetidos.
+             */
+            for(int i=0; i<(datos.length/8); i++){
+             if(datos[i]==85&&datos[i+1]==4&&datos[i+2]==5){
+                 /**
+                  * Bucle for para poder tomar del DNIe los dígitos que conforman
+                  * el NIF.
+                  */
+                for(int j=1 ; j<=9; j++){
+                   int ajustePosicion = i+j+4;
+                   /**
+                     * Necesito crear un nuevo array de bytes que contenga los 
+                     * valores del array de bytes datos y debo ajustar la posicion
+                     * de este para recorrer y tomar solo los 9 dígitos que se
+                     * corresponden con el NIF (xxxxxxxxk).
+                     */        
+                    byte[] posicionArray = new byte[1];
+                    /**
+                     * Una vez se ha creado el array de bytes que contendrá los 
+                     * dígitos del NIF que me interesan se deberá ajustar la posicion
+                     * para tomar solo el NIF y no otros bytes que no son de interes.
+                    */
+                    posicionArray[0] = datos[ajustePosicion]; 
+                    /**
+                     * Se procede a realizar la concatenacion de cadenas para que
+                     * con cada vuelta del bucle cada valor guardado de la posicion
+                     * del array de bytes datos de interes se almacene. 
+                     */
+                    String concatena = new String (posicionArray);
+                    nif = nif.concat(concatena);
+                    
+                }//Fin del for.
+                bandera = true;//Cuando ya tengo el NIF coloco la bandera a true para salir del do while.          
+             }//Fin del if. 
+            }//Fin del for.
+        }while(bandera==false);//Fin del do while.
+        bandera = false; //Se coloca de nuevo la bandera a false para entrar en los otros do while. 
+        System.out.println(nif);
+        return null;
     }
 }
