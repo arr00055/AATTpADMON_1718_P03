@@ -416,10 +416,27 @@ public class ObtenerDatos {
              }//Fin del if. 
             }//Fin del for.
         }while(bandera==false);//Fin del do while.
-
-        System.out.println(nif);
-        System.out.println(apellidos);
-        System.out.println(name);
-        return null;
+        
+        //Sacar por pantalla valores. 
+        //System.out.println(nif);
+        //System.out.println(apellidos);
+        //System.out.println(name);
+        
+        //Separar el apellido del nombre y tomar los apellidos.
+        String[] parts = apellidos.split(" ");
+        String primerApellido = parts[0];
+        String segundoApellido = parts[1];
+        
+        //Sacar por pantalla valores.
+        //System.out.println(primerApellido);
+        //System.out.println(segundoApellido);
+      
+    /**
+     * Creo un objeto de la clase Usuario que contiene los valores extraidos del
+     * DNIe.
+     */
+     Usuario Usuario = new Usuario(name,primerApellido,segundoApellido,nif);
+          
+        return Usuario;
     }
 }

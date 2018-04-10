@@ -11,7 +11,7 @@ import java.io.InputStream;
  * Aplicaciones Telemáticas para la Administración
  * 
  * Este programa debe ller el nombre y NIF de un usuario del DNIe, formar el identificador de usuario y autenticarse con un servidor remoto a través de HTTP 
- * @author Juan Carlos Cuevas Martínez
+ * @author Juan Carlos Cuevas Martínez, Alejandro Romo Rivero. 
  */
 public class Main {
     /**
@@ -25,7 +25,8 @@ public class Main {
         ObtenerDatos od = new ObtenerDatos();
         Usuario user = od.LeerNIF();
         if(user!=null)
-            System.out.println("usuario: "+user.toString());
+            /*Si existe el usuario se procedera a realizar un saludo de bienvenida mostrando su nombre, apellidos y nif.*/
+            System.out.println("Bienvenido: "+user.getApellido1()+" "+user.getApellido2()+" "+user.getNombre()+" Con NIF: "+user.getNif());
         
         //TAREA 3. AUTENTICAR EL CLIENTE CON EL SERVIDOR
         
