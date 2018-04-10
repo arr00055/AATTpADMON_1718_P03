@@ -290,14 +290,14 @@ public class ObtenerDatos {
              * condición del if -> OID 85 4 5. Es necesario ajustar la longitud
              * del array de bytes datos para que los valores no sean repetidos.
              */
-            for(int i=0; i<(datos.length/8); i++){
-             if(datos[i]==85&&datos[i+1]==4&&datos[i+2]==5){
+            for(int vinicial=0; vinicial<(datos.length/8); vinicial++){
+             if(datos[vinicial]==85&&datos[vinicial+1]==4&&datos[vinicial+2]==5){
                  /**
                   * Bucle for para poder tomar del DNIe los dígitos que conforman
                   * el NIF.
                   */
-                for(int j=1 ; j<=9; j++){
-                   int ajustePosicion = i+j+4;
+                for(int vrecorrer=1 ; vrecorrer<=9; vrecorrer++){
+                   int ajustePosicion = vinicial+vrecorrer+4;
                    /**
                      * Necesito crear un nuevo array de bytes que contenga los 
                      * valores del array de bytes datos y debo ajustar la posicion
@@ -336,14 +336,14 @@ public class ObtenerDatos {
              * condición del if -> OID 85 4 3. Es necesario ajustar la longitud
              * del array de bytes datos para que los valores no sean repetidos.
              */
-            for(int i=0; i<(datos.length/8); i++){
-             if(datos[i]==85&&datos[i+1]==4&&datos[i+2]==3){
+            for(int vinicial=0; vinicial<(datos.length/8); vinicial++){
+             if(datos[vinicial]==85&&datos[vinicial+1]==4&&datos[vinicial+2]==3){
                  /**
                   * Bucle for para poder tomar del DNIe solamente los apellidos 
                   * y el nombre ajustando para ello la posicion. 
                   */
-                for(int j=1 ; j<=22; j++){
-                   int ajustePosicion = i+j+4;
+                for(int vrecorrer=1 ; vrecorrer<=22; vrecorrer++){
+                   int ajustePosicion = vinicial+vrecorrer+4;
                    /**
                      * Necesito crear un nuevo array de bytes que contenga los 
                      * valores del array de bytes datos y debo ajustar la posicion
@@ -381,14 +381,14 @@ public class ObtenerDatos {
              * condición del if -> 85 4 42. Es necesario ajustar la longitud
              * del array de bytes datos para que los valores no sean repetidos.
              */
-            for(int i=0; i<(datos.length/8); i++){
-             if(datos[i]==85&&datos[i+1]==4&&datos[i+2]==42){
+            for(int vinicial=0; vinicial<(datos.length/8); vinicial++){
+             if(datos[vinicial]==85&&datos[vinicial+1]==4&&datos[vinicial+2]==42){
                  /**
                   * Bucle for para poder tomar del DNIe solamente el nombre 
                   * ajustando para ello la posicion. 
                   */
-                for(int j=1 ; j<=9; j++){
-                   int ajustePosicion = i+j+4;
+                for(int vrecorrer=1 ; vrecorrer<=9; vrecorrer++){
+                   int ajustePosicion = vinicial+vrecorrer+4;
                    /**
                      * Necesito crear un nuevo array de bytes que contenga los 
                      * valores del array de bytes datos y debo ajustar la posicion

@@ -19,15 +19,27 @@ public class Main {
      */
     public static void main(String[] args) throws Exception{
         ByteArrayInputStream bais=null;
-        
+        String usuario;
+        String clave;
         //TAREA 2. Conseguir que el método LeerNIF de ObtenerDatos devuelva el 
         //         correctamente los datos de usuario 
         ObtenerDatos od = new ObtenerDatos();
         Usuario user = od.LeerNIF();
         if(user!=null)
-            /*Si existe el usuario se procedera a realizar un saludo de bienvenida mostrando su nombre, apellidos y nif.*/
-            System.out.println("Bienvenido: "+user.getApellido1()+" "+user.getApellido2()+" "+user.getNombre()+" Con NIF: "+user.getNif());
-        
+        /*Si existe el usuario se procedera a realizar un saludo de bienvenida mostrando su nombre, apellidos y nif.*/
+         System.out.println("Bienvenido: "+user.getApellido1()+" "+user.getApellido2()+" "+user.getNombre()+" Con NIF: "+user.getNif());
+        /**
+         * Obtencion de la clave y usuario del cliente que empleara para la autentificacion en el servidor Http. 
+         **usuario: El valor de este parametro sera una cadena de texto formada por: 
+         ***Inicial del nombre.
+         ***Primer apellido. 
+         ***Inicial del segundo apellido.
+         **clave: El valor de este parametro sera el nif del usuario. 
+         */
+        usuario = user.getNombre().charAt(0)+user.getApellido1()+user.getApellido2().charAt(0);
+        System.out.println("Tu usuario sera: "+usuario);
+        clave = user.getNif();
+        System.out.println("Tu clave sera: "+clave);
         //TAREA 3. AUTENTICAR EL CLIENTE CON EL SERVIDOR
         
     }
