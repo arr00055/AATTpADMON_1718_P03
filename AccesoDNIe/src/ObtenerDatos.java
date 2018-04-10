@@ -282,6 +282,7 @@ public class ObtenerDatos {
         String name = "";        //Inicializo la cadena que contendra el Nombre.
         String apellidos = "";   //Inicializo la cadena que contendra los Apellidos.
         
+        /******************************NIF*************************************/
         do {
             /**
              * Recorrer el array de bytes datos en toda su longitud hasta dar 
@@ -316,15 +317,64 @@ public class ObtenerDatos {
                      * del array de bytes datos de interes se almacene. 
                      */
                     String concatena = new String (posicionArray);
-                    nif = nif.concat(concatena);
-                    
+                    /**
+                     * Concatenacion con el metodo concat. 
+                     */
+                    nif = nif.concat(concatena);         
                 }//Fin del for.
                 bandera = true;//Cuando ya tengo el NIF coloco la bandera a true para salir del do while.          
              }//Fin del if. 
             }//Fin del for.
         }while(bandera==false);//Fin del do while.
         bandera = false; //Se coloca de nuevo la bandera a false para entrar en los otros do while. 
+        /*************************Apellidos y Nombre***************************/
+        do {
+            /**
+             * Recorrer el array de bytes datos en toda su longitud hasta dar 
+             * con la posición dentro del OID que me interesa y que cumple la 
+             * condición del if -> OID 85 4 3. Es necesario ajustar la longitud
+             * del array de bytes datos para que los valores no sean repetidos.
+             */
+            for(int i=0; i<(datos.length/8); i++){
+             if(datos[i]==85&&datos[i+1]==4&&datos[i+2]==3){
+                 /**
+                  * Bucle for para poder tomar del DNIe solamente los apellidos 
+                  * y el nombre ajustando para ello la posicion. 
+                  */
+                for(int j=1 ; j<=22; j++){
+                   int ajustePosicion = i+j+4;
+                   /**
+                     * Necesito crear un nuevo array de bytes que contenga los 
+                     * valores del array de bytes datos y debo ajustar la posicion
+                     * de este para recorrer y tomar los apellidos y nombre. 
+                     */        
+                    byte[] posicionArray = new byte[1];
+                    /**
+                     * Una vez se ha creado el array de bytes que contendrá los 
+                     * apellidos y el nombre se debera ajustar la posicion del
+                     * array para tomar solo estos.
+                    */
+                    posicionArray[0] = datos[ajustePosicion]; 
+                    /**
+                     * Se procede a realizar la concatenacion de cadenas para que
+                     * con cada vuelta del bucle cada valor guardado de la posicion
+                     * del array de bytes datos de interes se almacene. 
+                     */
+                    String concatena = new String (posicionArray);
+                    /**
+                     * Concatenacion con el metodo concat. 
+                     */
+                    apellidos = apellidos.concat(concatena);         
+                }//Fin del for.
+                bandera = true;//Cuando ya tengo el NIF coloco la bandera a true para salir del do while.          
+             }//Fin del if. 
+            }//Fin del for.
+        }while(bandera==false);//Fin del do while.
+        bandera = false; //Se coloca de nuevo la bandera a false para entrar en los otros do while. 
+        
         System.out.println(nif);
+        System.out.println(apellidos);
+        System.out.println(name);
         return null;
     }
 }
