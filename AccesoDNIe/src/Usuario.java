@@ -1,4 +1,5 @@
 /**
+ * Clase Usuario. 
  * Clase para almacenar los datos de un usuario.
  * 
  * @author Juan Carlos Cuevas Martínez, Alejandro Romo Rivero.
@@ -25,7 +26,8 @@ public class Usuario {
     }
     
     /**
-     * Metodo que devuelve los datos usuario como un String.
+     * Metodo toString.
+     * Sobreescribe el Metodo toString y devuelve los datos usuario como un String.
      * 
      * @return String con los datos del usuario (Nombre, Primer Apellido, Segundo Apellido, NIF).
     **/
@@ -35,6 +37,7 @@ public class Usuario {
     }
 
     /**
+     * Metodo getNombre.
      * Metodo get para el Nombre del Usuario.
      * 
      * @return Cadena con nombre del usuario.
@@ -44,6 +47,7 @@ public class Usuario {
     }
 
     /**
+     * Metodo setNombre.
      * Metodo set para el Nombre del Usuario.
      * 
      * @param nombre que se quiere insertar.
@@ -53,6 +57,7 @@ public class Usuario {
     }
 
     /**
+     * Metodo getApellido1.
      * Metodo get para el Primer Apellido del Usuario.
      * 
      * @return Cadena con primer apellido del usuario.
@@ -62,6 +67,7 @@ public class Usuario {
     }
     
     /**
+     * Metodo setApellido1.
      * Metodo set para el Primer Apellido del Usuario.
      * 
      * @param apellido1 que se quiere insertar.
@@ -71,6 +77,7 @@ public class Usuario {
     }
 
     /**
+     * Metodo getApellido2. 
      * Metodo get para el Segundo Apellido del Usuario.
      * 
      * @return Cadena con segundo apellido del usuario.
@@ -80,6 +87,7 @@ public class Usuario {
     }
 
     /**
+     * Metodo setApellido2.
      * Metodo set para el Segundo Apellido del Usuario.
      * 
      * @param apellido2 que se quiere insertar.
@@ -89,6 +97,7 @@ public class Usuario {
     }
     
     /**
+     * Metodo getNif.
      * Metodo get para el Nif del Usuario.
      * 
      * @return Cadena con nif del usuario.
@@ -98,6 +107,7 @@ public class Usuario {
     }
     
     /**
+     * Metodo setNif.
      * Metodo set para el Nif del Usuario.
      * 
      * @param nif que se quiere insertar.

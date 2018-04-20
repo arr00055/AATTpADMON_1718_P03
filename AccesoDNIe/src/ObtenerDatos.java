@@ -7,7 +7,8 @@ import java.util.logging.Logger;
 import javax.smartcardio.*;
 
 /**
- * La clase ObtenerDatos implementa cuatro metodos publicos que permiten obtener
+ * Clase ObtenerDatos.
+ * Esta clase implementa cuatro metodos publicos que permiten obtener 
  * determinados datos de los certificados de tarjetas DNIe, Izenpe y Ona.
  *
  * @author Juan Carlos Cuevas Martínez, Alejandro Romo Rivero.
@@ -27,6 +28,7 @@ public class ObtenerDatos {
     }
     
     /**
+     * Metodo LeerNIF.
      * Metodo empleado para poder leer DNIe.
      * 
      * @return Usuario que ha sido leido del DNIe. 
@@ -59,6 +61,7 @@ public class ObtenerDatos {
     }
 
    /**
+     * Metodo leerCertificado. 
      * Metodo para leer el certificado del DNIe.
      * 
      * @param ch Canal de envio de la informacion hacia DNIe.
@@ -201,11 +204,12 @@ public class ObtenerDatos {
     
     
     /**
+     * Metodo ConexionTarjeta.
      * Este metodo establece la conexion con la tarjeta. La funcion busca el
      * Terminal que contenga una tarjeta, independientemente del tipo de tarjeta
      * que sea.
      *
-     * @return objeto Card con conexion establecida
+     * @return objeto Card con conexion establecida.
      * @throws Exception
      */
     private Card ConexionTarjeta() throws Exception {
@@ -234,6 +238,7 @@ public class ObtenerDatos {
     }
 
     /**
+     * Metodo es DNIe.
      * Este metodo nos permite saber el tipo de tarjeta que estamos leyendo del
      * Terminal, a partir del ATR de esta.
      *
@@ -272,7 +277,7 @@ public class ObtenerDatos {
      * Los valores del OID han sido extraidos del excel aportado para el desarrollo 
      * de la practica, y con esos valores del OID se sacara el nombre, los apellidos
      * y el NIF del DNIe. 
-     * @param datos
+     * @param datos datos extraidos de la tarjeta DNIe.
      * @return Objeto de clase Usuario con los datos asociados extraidos del DNIe.
      */
     private Usuario leerDatosUsuario(byte[] datos) {
@@ -422,9 +427,13 @@ public class ObtenerDatos {
         //System.out.println(apellidos);
         //System.out.println(name);
         
-        //Separar el apellido del nombre y tomar los apellidos.
+        //Separar el apellido del nombre con split y guardarlos en un array de 
+        //tipo cadena para poder tomar los apellidos a raiz de los datos que 
+        //han sido extraidos del DNIe. 
         String[] parts = apellidos.split(" ");
+        //Guardo la primera parte del split correspondiente al primer apellido.
         String primerApellido = parts[0];
+        //Guardo la segunda parte del split correspondiente al segundo apellido.
         String segundoApellido = parts[1];
         
         //Sacar por pantalla valores.
@@ -436,7 +445,8 @@ public class ObtenerDatos {
      * DNIe.
      */
      Usuario Usuario = new Usuario(name,primerApellido,segundoApellido,nif);
-          
+        
+     //Devuelvo el objeto creado.
         return Usuario;
-    }
-}
+    }//Fin del metodo.
+}//Fin de la clase. 
